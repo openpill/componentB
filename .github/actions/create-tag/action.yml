@@ -6,10 +6,12 @@ inputs:
     required: true
   commitish:
     description: 'The commitish (commit hash, branch, or tag) to which the tag should point'
-    required: true
+    required: false
+    default: ${{ github.sha }}
   tag-message:
     description: 'The message for the tag'
-    required: true
+    required: false
+    default: 'Tagging release'
 runs:
   using: 'node12'
   main: 'index.js'
