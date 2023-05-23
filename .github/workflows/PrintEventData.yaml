@@ -34,7 +34,7 @@ jobs:
           tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
           tag-message: |
             Repo updated: ${{ github.event.repository.updated_at }}
-            Now:          ${{ steps.date.output.NOW }}
+            Now:          ${{ steps.date.outputs.NOW }}
             Event:        ${{ github.event_name }}
             Workflow:     ${{ github.workflow }}
             Ref:          ${{ github.ref }}
