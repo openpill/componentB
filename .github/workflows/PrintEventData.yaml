@@ -28,7 +28,7 @@ jobs:
             ${{ toJSON(github) }}
             EOF
       - name: Create Tag
-        uses: ./.github/actions/create-tag
+        uses: opensafety/componentB/create-tag@main
         with:
           tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
           tag-message: |
