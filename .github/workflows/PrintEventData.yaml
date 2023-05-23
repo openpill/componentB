@@ -22,6 +22,6 @@ jobs:
       - run: env | sort
       - name: toJSON(github)
         run: |
-            cat << 'EOF'
+            cat << 'EOF' | jq -C .
             ${{ toJSON(github) }}
             EOF
