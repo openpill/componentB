@@ -30,6 +30,7 @@ jobs:
       - name: Create Tag
         uses: opensafety/action-create-tag@main
         with:
+          token: ${{ github.token }}
           tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
           tag-message: |
             Repo updated: ${{ github.event.repository.updated_at }}
