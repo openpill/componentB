@@ -1,0 +1,27 @@
+name: PrintEventData
+
+on:
+  push:
+  merge_group:
+    types:
+      - checks_requested
+      - destroyed
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+  check_run:
+    types: [created,requested_action, rerequested, completed]
+jobs:    
+  doPrintEventData:
+    runs-on: ubuntu-22.04    
+    timeout-minutes: 15
+    name: ${{github.event_name}}
+    steps:
+      - run:  date --iso-8601=seconds
+      - run: env | sort
+      - name: toJSON(github)
+        run: |
+            cat << 'EOF'
+            ${{ toJSON(github) }}
+            EOF
