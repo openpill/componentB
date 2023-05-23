@@ -30,7 +30,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Tag
-        uses: ./.github/actions/create-tag@main
+        uses: ./.github/actions/create-tag
         with:
           tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
           tag-message: |
