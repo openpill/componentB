@@ -27,8 +27,10 @@ jobs:
             cat << 'EOF' | jq -C .
             ${{ toJSON(github) }}
             EOF
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Create Tag
-        uses: opensafety/componentB/create-tag@main
+        uses: ./.github/actions/create-tag@main
         with:
           tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
           tag-message: |
