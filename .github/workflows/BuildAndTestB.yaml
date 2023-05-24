@@ -1,0 +1,38 @@
+name: BuildAndTestB
+on:
+  merge_group:
+    types:
+      - checks_requested
+      - destroyed
+    branches:
+      - main
+  pull_request:
+jobs:    
+  doBuildAndTestB:
+    runs-on: ubuntu-22.04    
+    timeout-minutes: 15
+    steps:
+      - name: date
+        id: date
+        run:  echo "NOW=`date --iso-8601=seconds`" | tee $GITHUB_OUTPUT
+      - run: env | sort
+      - name: toJSON(github)
+        run: |
+            cat << 'EOF' | jq -C .
+            ${{ toJSON(github) }}
+            EOF
+      - name: Pretend to build and test
+        run: sleep 25
+      - name: Create Tag
+        uses: opensafety/action-create-tag@main
+        with:
+          token: ${{ github.token }}
+          tag-name: ${{ github.repository }}/${{ github.workflow }}/${{ github.run_number }}-${{ github.run_id }}
+          tag-message: |
+            Repo updated: ${{ github.event.repository.updated_at }}
+            Now:          ${{ steps.date.outputs.NOW }}
+            Event:        ${{ github.event_name }}
+            Workflow:     ${{ github.workflow }}
+            Ref:          ${{ github.ref }}
+            Run URL:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
