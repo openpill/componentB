@@ -31,7 +31,7 @@ jobs:
         uses: opensafety/action-create-tag@main
         with:
           token: ${{ github.token }}
-          tag-name: ${{ github.repository }}/actions/runs/${{ github.run_id }}
+          tag-name: ${{ github.repository }}/${{ github.workflow }}/${{ github.run_number }}-${{ github.run_id }}
           tag-message: |
             Repo updated: ${{ github.event.repository.updated_at }}
             Now:          ${{ steps.date.outputs.NOW }}
