@@ -21,9 +21,6 @@ jobs:
             cat << 'EOF' | jq -C .
             ${{ toJSON(github) }}
             EOF
-      - name: Pretend to build and test
-        if: github.event_name == 'merge_group'
-        run: sleep 25
       - name: Create Tag
         uses: opensafety/action-create-tag@main
         with:
@@ -37,4 +34,7 @@ jobs:
             Ref:          ${{ github.ref }}
             Run URL:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            
+                  
+      - name: Pretend to build and test
+        if: github.event_name == 'merge_group'
+        run: sleep 25
