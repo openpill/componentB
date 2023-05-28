@@ -9,6 +9,7 @@ on:
   pull_request:
 jobs:    
   doBuildAndTestB:
+    if: github.event_name == 'merge_group'
     runs-on: ubuntu-22.04    
     timeout-minutes: 15
     steps:
