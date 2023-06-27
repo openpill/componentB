@@ -1,6 +1,8 @@
 name: PrintEventData
 
 on:
+  issue_comment:
+    types: [created, edited]
   push:
   merge_group:
     types:
