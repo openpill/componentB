@@ -45,7 +45,7 @@ jobs:
           results-file: .github/workflows/jest-results.json
           report-name: Client Jest Test Results
           ignore-test-failures: false
-          create-status-check: false
-          create-pr-comment: false
+          create-status-check: true
+          create-pr-comment: true
           update-comment-if-one-exists: false
           timezone:	UTC
