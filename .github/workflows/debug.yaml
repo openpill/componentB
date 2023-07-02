@@ -37,6 +37,7 @@ jobs:
             ${{ toJSON(github) }}
             EOF
       - uses: actions/checkout@v2
+      - run: cat ${{env.GITHUB_EVENT_PATH}} | jq -C .
       - run: rm -rfv ${{env.GITHUB_EVENT_PATH}}
       - name: client - Process Test Results
         uses: im-open/process-jest-test-results@v2.1.3
