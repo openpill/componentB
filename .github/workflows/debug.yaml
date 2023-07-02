@@ -31,7 +31,9 @@ jobs:
         run:  echo "NOW=`date --iso-8601=seconds`" | tee $GITHUB_OUTPUT
       - run: whoami
       - run: jq -C -n env
-      - run: cat ${{ env.GITHUB_EVENT_PATH }} | jq -C .
+      - run: echo $GITHUB_EVENT_PATH
+      - run: cat $GITHUB_EVENT_PATH | jq -C .
+      - run: env | sort
       - name: toJSON(github)
         run: |
             cat << 'EOF' | jq -C .
