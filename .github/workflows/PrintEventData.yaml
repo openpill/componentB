@@ -1,6 +1,7 @@
 name: PrintEventData
 
 on:
+  issues:
   issue_comment:
     types: [created, edited]
   push:
