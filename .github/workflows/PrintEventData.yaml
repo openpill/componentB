@@ -11,8 +11,9 @@ on:
       - destroyed
     branches:
       - main
-  pull_request:
+  # pull_request:
   pull_request_target:
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
   check_run:
     types: [created,requested_action, rerequested, completed]
