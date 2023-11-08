@@ -28,7 +28,7 @@ jobs:
     name: ${{github.event_name}}
     steps:
       - name: dump js context
-      - uses: actions/github-script@v6
+        uses: actions/github-script@v6
         with:
           script: console.log(context);
       - name: date
