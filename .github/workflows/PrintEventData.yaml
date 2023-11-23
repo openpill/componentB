@@ -16,7 +16,14 @@ on:
     types: [opened, reopened, synchronize]
   workflow_dispatch:
     inputs:
-      inputA:
+      environment:
+        required: true
+        type: choice
+        default: staging
+        options:
+        - staging
+        - production
+      desired_version:
         required: true
         type: string
   check_run:
