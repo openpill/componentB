@@ -14,12 +14,12 @@ jobs:
       (github.event_name == 'pull_request') ||
       (github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-22.04
-    services:
-      mongo:
-        image: mongo:4.0
-        env:
-          MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: password
+    #services:
+    #  mongo:
+    #    image: mongo:4.0
+    #    env:
+    #      MONGO_INITDB_ROOT_USERNAME: root
+    #      MONGO_INITDB_ROOT_PASSWORD: password
       # Temporarily disable due to bug on gasp when running more than one service container...
       # cognito:
       #   image: jagregory/cognito-local:3.21.1
@@ -36,16 +36,9 @@ jobs:
             cat << 'EOF' | jq -C .
             ${{ toJSON(github) }}
             EOF
-      - uses: actions/checkout@v2
-
-      - name: client - Process Test Results
-        uses: im-open/process-jest-test-results@v2.1.3
+      - name: Invoke workflow without inputs
+        uses: benc-uk/workflow-dispatch@v1.2.2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          results-file: .github/workflows/jest-results.json
-          report-name: Client Jest Test Results
-          ignore-test-failures: false
-          create-status-check: true
-          create-pr-comment: true
-          update-comment-if-one-exists: false
-          timezone:	UTC
+          workflow: PrintEventData.yaml
+
+      
