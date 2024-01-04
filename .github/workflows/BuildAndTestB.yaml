@@ -35,6 +35,11 @@ jobs:
             Run URL:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
                   
-      - name: Pretend to build and test
+      - name: Wait longer on PR == 38
+        if: github.event_name == 'merge_group' && contains(github.ref, 'pr-38')
+        run: sleep 30
+      
+      - name: Pretend to build and test and then fail
         if: github.event_name == 'merge_group'
-        run: sleep 120
+        run: sleep 30 && exit -1
+       
